@@ -1,21 +1,50 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { View, TextInput, Button, StyleSheet } from "react-native";
 
 export default function App() {
+  const [nome, setNome] = useState("");
+  const [numero, setNumero] = useState("");
+  const capturarNome = (nome) => {
+    setNome(nome);
+  };
+  const capturarNumero = (numero) => {
+    setNumero(numero);
+  };
+
+  const adcionarContato = () => {
+    console.log(nome, numero);
+  };
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <View style={styles.contatoInputView}>
+        <TextInput
+          placeholder="Digite o nome do contato"
+          style={styles.contatoTextInput}
+          onChangeText={capturarNome}
+        />
+        <TextInput
+          placeholder="Digite o numero do contato"
+          style={styles.contatoTextInput}
+          onChangeText={capturarNumero}
+        />
+        <View style={styles.contatoInputButton}>
+          <Button title="Adcionar contato" onPress={adcionarContato} />
+        </View>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  container: { padding: 40 },
+  contatoInputView: { alignItems: "center" },
+  contatoTextInput: {
+    width: "80%",
+    borderBottomColor: "#CCC",
+    borderBottomWidth: 1,
+    marginBottom: 4,
+    padding: 4,
+    textAlign: "center",
   },
+  contatoInputButton: { width: "80%" },
 });
